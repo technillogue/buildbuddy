@@ -220,6 +220,7 @@ export default class HistoryComponent extends React.Component {
     if (this.props.hash == "#repos") viewType = "repos";
     if (this.props.hash == "#commits") viewType = "commits";
     if (this.props.hash == "#hosts") viewType = "hosts";
+    // somewhere around here, either "slowest build" or sort order
     return (
       <div className="history">
         <div className="shelf">
@@ -340,7 +341,7 @@ export default class HistoryComponent extends React.Component {
           {this.state.invocations.length > 0 && !slice && (
             <div className="container nopadding-dense">
               <div className={`grid ${this.state.invocations.length < 20 ? "grid-grow" : ""}`}>
-                {this.state.invocations.map((invocation) => (
+                {this.state.invocations.sorted(invocation.durationUsec).map((invocation) => ( // correct this to proper ts
                   <a href={`/invocation/${invocation.invocationId}`} onClick={(e) => e.preventDefault()}>
                     <div
                       key={invocation.invocationId}

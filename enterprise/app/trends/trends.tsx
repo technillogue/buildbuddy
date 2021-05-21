@@ -186,6 +186,7 @@ export default class TrendsComponent extends React.Component {
                   return +stat?.totalBuildTimeUsec / +stat?.completedInvocationCount / 1000000;
                 }}
                 extractSecondaryValue={(date) => +this.state.dateToStatMap.get(date)?.maxDurationUsec / 1000000}
+		// this.state.dateToStatMap.get(date)?.maxDurationUsec // get invocation id from whereever maxDurationUsec is defined
                 extractLabel={this.formatShortDate}
                 formatHoverLabel={this.formatLongDate}
                 formatHoverValue={(value) => (value || 0).toFixed() + " seconds average"}
